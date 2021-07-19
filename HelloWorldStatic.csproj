@@ -2,11 +2,22 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <StaticallyLinked>true</StaticallyLinked>
     <InvariantGlobalization>true</InvariantGlobalization>
     <IlcDisableReflection>true</IlcDisableReflection>
+    <IlcOptimizationPreference>Size</IlcOptimizationPreference>
+    <!--<IlcDisableReflection>true</IlcDisableReflection>-->
+    
+    <TrimMode>link</TrimMode>
+    <UseSystemResourceKeys>true</UseSystemResourceKeys>
+    <EventSourceSupport>false</EventSourceSupport>
+    <DebuggerSupport>false</DebuggerSupport>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <IlcArg Include="--reflectedonly" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="6.0.0-*" />
