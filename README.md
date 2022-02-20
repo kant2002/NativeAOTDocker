@@ -18,3 +18,5 @@ docker build -t test-build -f Dockerfile.objwriter .
 
 docker build -t nativeaot-scratch-build -f Dockerfile.objwriter .
 docker run -i nativeaot-scratch-build
+
+Compiled `libobjwriter.so` is located at `artifacts/obj/InstallRoot-/lib` inside docker.
