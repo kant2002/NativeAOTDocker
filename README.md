@@ -14,5 +14,7 @@ Resulting docker image have size of 7MB. Thats after disabling reflection. That'
 # Testing that building inside Alpine works.
 docker build -t test-build -f Dockerfile.objwriter .
 
-https://gist.github.com/kant2002/0884c457943c9b6126bdfee091167024?file=Dockerfile
-https://gist.github.com/kant2002/0884c457943c9b6126bdfee091167024?file=nativeaot.csproj
+# Smoke test for ObjWriter build
+
+docker build -t nativeaot-scratch-build -f Dockerfile.objwriter .
+docker run -i nativeaot-scratch-build
