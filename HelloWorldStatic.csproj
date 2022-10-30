@@ -6,8 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <StaticallyLinked>true</StaticallyLinked>
     <PublishAot>true</PublishAot>
-    <InvariantGlobalization>true</InvariantGlobalization>
     <IlcDisableReflection>true</IlcDisableReflection>
+    <!-- Switch this property to enable/disable globalization -->
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <StaticICULinking Condition="$(InvariantGlobalization) == false">true</StaticICULinking>
+    <DefineConstants Condition="$(InvariantGlobalization) == true">$(DefineConstants);NO_GLOBALIZATION</DefineConstants>
   </PropertyGroup>
+
+  <ItemGroup>
+    <LinkerArg Include="-static" />
+  </ItemGroup>
 
 </Project>
