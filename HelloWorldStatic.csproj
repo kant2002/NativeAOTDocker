@@ -13,12 +13,16 @@
     <DefineConstants Condition="'$(InvariantGlobalization)' == 'true'">$(DefineConstants);NO_GLOBALIZATION</DefineConstants>
   </PropertyGroup>
 
-<ItemGroup>
-  <LinkerArg Include="-static" />
-</ItemGroup>
+  <ItemGroup>
+    <LinkerArg Include="-static" />
+  </ItemGroup>
 
-<ItemGroup>
-  <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="8.0.0-alpha.1.22609.9" />
-</ItemGroup>
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Disabled.DoNotThrowForAssembly" Value="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="8.0.0-alpha.1.22609.9" />
+  </ItemGroup>
 
 </Project>
