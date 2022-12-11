@@ -8,13 +8,17 @@
     <PublishAot>true</PublishAot>
     <IlcDisableReflection>true</IlcDisableReflection>
     <!-- Switch this property to enable/disable globalization -->
-    <InvariantGlobalization>true</InvariantGlobalization>
-    <StaticICULinking Condition="$(InvariantGlobalization) == false">true</StaticICULinking>
-    <DefineConstants Condition="$(InvariantGlobalization) == true">$(DefineConstants);NO_GLOBALIZATION</DefineConstants>
+    <InvariantGlobalization Condition="'$(InvariantGlobalization)' == ''">false</InvariantGlobalization>
+    <StaticICULinking Condition="'$(InvariantGlobalization)' != 'true'">true</StaticICULinking>
+    <DefineConstants Condition="'$(InvariantGlobalization)' == 'true'">$(DefineConstants);NO_GLOBALIZATION</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <LinkerArg Include="-static" />
-  </ItemGroup>
+<ItemGroup>
+  <LinkerArg Include="-static" />
+</ItemGroup>
+
+<ItemGroup>
+  <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="8.0.0-alpha.1.22609.9" />
+</ItemGroup>
 
 </Project>
