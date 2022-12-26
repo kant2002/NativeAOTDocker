@@ -11,18 +11,15 @@
     <InvariantGlobalization Condition="'$(InvariantGlobalization)' == ''">false</InvariantGlobalization>
     <StaticICULinking Condition="'$(InvariantGlobalization)' != 'true'">true</StaticICULinking>
     <DefineConstants Condition="'$(InvariantGlobalization)' == 'true'">$(DefineConstants);NO_GLOBALIZATION</DefineConstants>
+    <StaticExecutable>true</StaticExecutable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <LinkerArg Include="-static" />
-  </ItemGroup>
 
   <ItemGroup>
     <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Disabled.DoNotThrowForAssembly" Value="true" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="8.0.0-alpha.1.22609.9" />
+    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="8.0.0-alpha.1.22625.2" />
   </ItemGroup>
 
 </Project>

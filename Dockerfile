@@ -5,8 +5,6 @@ COPY nuget.config .
 COPY HelloWorldStatic.csproj .
 RUN dotnet restore --runtime linux-musl-x64 HelloWorldStatic.csproj
 
-# Remove once https://github.com/dotnet/runtime/pull/79501 lands and propagates.
-COPY Microsoft.NETCore.Native.Unix.targets /root/.nuget/packages/microsoft.dotnet.ilcompiler/8.0.0-alpha.1.22609.9/build/Microsoft.NETCore.Native.Unix.targets
 COPY . .
 RUN dotnet publish -c Release -r linux-musl-x64 -o out HelloWorldStatic.csproj /p:InvariantGlobalization=false /bl
 
