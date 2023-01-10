@@ -14,6 +14,6 @@ RUN dotnet publish -c Release -r linux-musl-x64 -o out EmbeddedICU.csproj
 
 FROM scratch AS runtime
 WORKDIR /app
-COPY --from=build /app/out/* /app/
+COPY --from=build /app/out/EmbeddedICU /app/
 COPY --from=build /usr/share/icu/71.1/icudt71l.dat /usr/share/icu/71.1/
 ENTRYPOINT ["/app/EmbeddedICU"]

@@ -18,7 +18,7 @@ RUN dotnet publish -c Release -r linux-musl-x64 -o out WebApi.csproj
 
 FROM scratch AS runtime
 WORKDIR /app
-COPY --from=build /app/out/* /app/
+COPY --from=build /app/out/WebApi /app/
 COPY --from=build /etc/ssl/certs/* /etc/ssl/certs/
 EXPOSE 5000
 ENV ASPNETCORE_URLS="http://+80"

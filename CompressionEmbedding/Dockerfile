@@ -10,5 +10,5 @@ RUN dotnet publish -c Release -r linux-musl-x64 -o out CompressionEmbedding.cspr
 
 FROM scratch AS runtime
 WORKDIR /app
-COPY --from=build /app/out/* /app/
+COPY --from=build /app/out/CompressionEmbedding /app/
 ENTRYPOINT ["/app/CompressionEmbedding"]  

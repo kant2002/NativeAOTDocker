@@ -5,31 +5,33 @@ This repository is sample how to statically link console application into single
 
 # Build and Run
 
-Embedded ICU - 51.4 MB
+Embedded ICU - 35.9 MB
 ```shell
 docker build -t nativeaot-scratch EmbeddedICU 
 docker run -i nativeaot-scratch
 ```
 
-Invariant globalization - 8.41 MB
+30 MB is ICU data.
+
+Invariant globalization - 1.56 MB
 ```shell
 docker build -t nativeaot-scratch-invariant InvariantGlobalization
 docker run -i nativeaot-scratch-invariant
 ```
 
-Brotli + Deflate + Gzip - 11.8 MB
+Brotli + Deflate + Gzip - 2.56 MB
 ```shell
 docker build -t nativeaot-scratch-compression CompressionEmbedding
 docker run -i nativeaot-scratch-compression
 ```
 
-Embedded OpenSSL - 39.6 MB (with reflection unfortunately)
+Embedded OpenSSL - 10.5 MB (with reflection unfortunately)
 ```shell
 docker build -t nativeaot-scratch-openssl OpenSslEmbedding
 docker run -i nativeaot-scratch-openssl
 ```
 
-Web API - 102 MB (with reflection unfortunately and SSL not yet configured)
+Web API - 23.6 MB (with reflection unfortunately and SSL not yet configured)
 ```shell
 docker build -t nativeaot-scratch-webapi WebApi
 docker run -p 5022:80 -i nativeaot-scratch-webapi
@@ -37,7 +39,7 @@ docker run -p 5022:80 -i nativeaot-scratch-webapi
 
 Web API accessible on http://localhost:5022
 
-Resulting docker image have size of 8.9MB. Thats after disabling reflection. That's the minimum which I can get without integrating with Docker tightly. Or is it kernel integration I'm dreaming about?
+Resulting docker image have size of 1.56 MB. Thats after disabling reflection. That's the minimum which I can get without integrating with Docker tightly. Or is it kernel integration I'm dreaming about? Unikernels, I see unikernels around me.
 
 # Inspeciting scratch container
 

@@ -10,5 +10,5 @@ RUN dotnet publish -c Release -r linux-musl-x64 -o out InvariantGlobalization.cs
 
 FROM scratch AS runtime
 WORKDIR /app
-COPY --from=build /app/out/* /app/
+COPY --from=build /app/out/InvariantGlobalization /app/
 ENTRYPOINT ["/app/InvariantGlobalization"]  
