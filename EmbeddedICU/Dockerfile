@@ -1,6 +1,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS build
 WORKDIR /app
-RUN apk add clang libexecinfo binutils musl-dev build-base zlib-static cmake icu-static icu-dev
+# these RUN lines below is optimization for current experiment to account for the fact that I have multiple similar configuration
+# best practices of Docker building imply that I put all dependencies in single line
+RUN apk add clang libexecinfo binutils musl-dev build-base zlib-static
+RUN apk add cmake
+RUN apk add icu-static icu-dev
 COPY nuget.config .
 COPY EmbeddedICU.csproj .
 RUN dotnet restore --runtime linux-musl-x64 EmbeddedICU.csproj

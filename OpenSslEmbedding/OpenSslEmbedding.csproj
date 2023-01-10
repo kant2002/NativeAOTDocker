@@ -10,6 +10,7 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <StaticOpenSslLinking>true</StaticOpenSslLinking>
     <StaticExecutable>true</StaticExecutable>
+    <StripSymbols>true</StripSymbols>
   </PropertyGroup>
 
   <ItemGroup>

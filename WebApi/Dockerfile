@@ -6,18 +6,21 @@ RUN apk add clang libexecinfo binutils musl-dev build-base zlib-static
 RUN apk add cmake
 RUN apk add openssl-dev openssl-libs-static
 COPY nuget.config .
-COPY OpenSslEmbedding.csproj .
-RUN dotnet restore --runtime linux-musl-x64 OpenSslEmbedding.csproj
+COPY WebApi.csproj .
+RUN dotnet restore --runtime linux-musl-x64 WebApi.csproj
 
 # Remove once System.Security.Cryptography.Native can be statically linked using default build process
 COPY Microsoft.NETCore.Native.Unix.targets /root/.nuget/packages/microsoft.dotnet.ilcompiler/8.0.0-alpha.1.23058.2/build/Microsoft.NETCore.Native.Unix.targets
 COPY System.Security.Cryptography.Native /root/.nuget/packages/runtime.linux-musl-x64.microsoft.dotnet.ilcompiler/8.0.0-alpha.1.23058.2/native/src/libs/System.Security.Cryptography.Native
 COPY build-local.sh /root/.nuget/packages/runtime.linux-musl-x64.microsoft.dotnet.ilcompiler/8.0.0-alpha.1.23058.2/native/src/libs/build-local.sh
 COPY . .
-RUN dotnet publish -c Release -r linux-musl-x64 -o out OpenSslEmbedding.csproj
+RUN dotnet publish -c Release -r linux-musl-x64 -o out WebApi.csproj
 
 FROM scratch AS runtime
 WORKDIR /app
 COPY --from=build /app/out/* /app/
 COPY --from=build /etc/ssl/certs/* /etc/ssl/certs/
-ENTRYPOINT ["/app/OpenSslEmbedding"]  
+EXPOSE 5000
+ENV ASPNETCORE_URLS="http://+80"
+EXPOSE 80
+ENTRYPOINT ["/app/WebApi"]  

@@ -9,6 +9,7 @@
     <IlcDisableReflection>true</IlcDisableReflection>
     <InvariantGlobalization>true</InvariantGlobalization>
     <StaticExecutable>true</StaticExecutable>
+    <StripSymbols>true</StripSymbols>
   </PropertyGroup>
 
   <ItemGroup>
