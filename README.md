@@ -32,8 +32,10 @@ docker run -i nativeaot-scratch-openssl
 Web API - 102 MB (with reflection unfortunately and SSL not yet configured)
 ```shell
 docker build -t nativeaot-scratch-webapi WebApi
-docker run -i nativeaot-scratch-webapi
+docker run -p 5022:80 -i nativeaot-scratch-webapi
 ```
+
+Web API accessible on http://localhost:5022
 
 Resulting docker image have size of 8.9MB. Thats after disabling reflection. That's the minimum which I can get without integrating with Docker tightly. Or is it kernel integration I'm dreaming about?
 
