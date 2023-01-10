@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <StaticallyLinked>true</StaticallyLinked>
+    <PublishAot>true</PublishAot>
+    <IlcDisableReflection>false</IlcDisableReflection>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <StaticOpenSslLinking>true</StaticOpenSslLinking>
+    <StaticExecutable>true</StaticExecutable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Disabled.DoNotThrowForAssembly" Value="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="8.0.0-alpha.1.23058.2" />
+  </ItemGroup>
+
+</Project>

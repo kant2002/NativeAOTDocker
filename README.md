@@ -5,16 +5,32 @@ This repository is sample how to statically link console application into single
 
 # Build and Run
 
-ICU support - 47.9 Mb
+Embedded ICU - 47.9 MB
 ```shell
-docker build -t nativeaot-scratch -f Dockerfile . 
+cd EmbeddedICU
+docker build -t nativeaot-scratch . 
 docker run -i nativeaot-scratch
 ```
 
-Invariant globalization - 8.9 Mb 
+Invariant globalization - 8.9 MB
 ```shell
-docker build -f Dockerfile.invariant -t nativeaot-scratch-invariant .
+cd InvariantGlobalization
+docker build -t nativeaot-scratch-invariant .
 docker run -i nativeaot-scratch-invariant
+```
+
+Brotli + Deflate + Gzip - 11.8 MB
+```shell
+cd CompressionEmbedding
+docker build -t nativeaot-scratch-compression .
+docker run -i nativeaot-scratch-compression
+```
+
+Embedded OpenSSL - 39.6 MB (with reflection unfortunately)
+```shell
+cd CompressionEmbedding
+docker build -t nativeaot-scratch-openssl .
+docker run -i nativeaot-scratch-openssl
 ```
 
 Resulting docker image have size of 8.9MB. Thats after disabling reflection. That's the minimum which I can get without integrating with Docker tightly. Or is it kernel integration I'm dreaming about?

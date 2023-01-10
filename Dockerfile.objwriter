@@ -1,8 +1,0 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.13-WithNode-20210602183841-ae5be29 AS ciimage
-
-WORKDIR /root
-RUN git clone --depth 1 https://github.com/dotnet/llvm-project -b objwriter/12.x
-WORKDIR /root/llvm-project/
-RUN ./build.sh
-
-ENTRYPOINT ["/bin/sh"]
