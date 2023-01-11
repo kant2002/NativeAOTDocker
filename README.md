@@ -3,6 +3,18 @@ Scratch docker image using C#
 
 This repository is sample how to statically link console application into single executable and run on Docker.
 
+# Results
+
+This is sizes for experiment
+
+| Experiment | Size | Embed ICU | Embed OpenSSL | 
+| ------------ | ----- | --- | ---------- |
+| Console + Invariant globalization | 1.56 MB | No | No |
+| Console + ICU | 35.9 MB | Yes | No |
+| Console + Brotli + Deflate + Gzip | 2.56 MB  | No | No |
+| HttpClient + OpenSSL | 10.5 MB | No | Yes |
+| Web API | 23.6 MB | No | Yes |
+
 # Build and Run
 
 Embedded ICU - 35.9 MB
