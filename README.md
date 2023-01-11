@@ -37,7 +37,7 @@ docker build -t nativeaot-scratch-webapi WebApi
 docker run -p 5022:80 -i nativeaot-scratch-webapi
 ```
 
-Web API accessible on http://localhost:5022
+Web API accessible on http://localhost:5022. For SSL configuration take a look at https://learn.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide#with-openssl
 
 Resulting docker image have size of 1.56 MB. Thats after disabling reflection. That's the minimum which I can get without integrating with Docker tightly. Or is it kernel integration I'm dreaming about? Unikernels, I see unikernels around me.
 
