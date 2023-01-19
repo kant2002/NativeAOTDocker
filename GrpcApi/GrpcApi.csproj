@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <StaticallyLinked>true</StaticallyLinked>
+    <PublishAot>true</PublishAot>
+    <IlcDisableReflection>false</IlcDisableReflection>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <StaticOpenSslLinking>true</StaticOpenSslLinking>
+    <StaticExecutable>true</StaticExecutable>
+    <StripSymbols>true</StripSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="Switch.System.Reflection.Disabled.DoNotThrowForAssembly" Value="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.49.0" />
+    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="8.0.0-alpha.1.23068.7" />
+  </ItemGroup>
+
+</Project>

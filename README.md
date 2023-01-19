@@ -77,6 +77,13 @@ docker build -t nativeaot-scratch-npgsql NpgCli
 docker run -i -e ConnectionString='Host=host.docker.internal:32768;Username=postgres;Password=postgrespw' nativeaot-scratch-npgsql
 ```
 
+## GrpcApi - 66.7 MB
+with reflection unfortunately
+```shell
+docker build -t nativeaot-scratch-grpcapi GrpcApi
+docker run -i nativeaot-scratch-grpcapi
+```
+
 ## Web API on Chiseled - 33.9 MB
 with reflection unfortunately
 ```shell
