@@ -14,6 +14,7 @@ This is sizes for experiment
 | Console + Brotli + Deflate + Gzip | 2.56 MB  | No | No |
 | HttpClient + OpenSSL | 10.5 MB | No | Yes |
 | Web API | 23.6 MB | No | Yes |
+| Npgsql Cli | 66.7 MB | Yes | Yes |
 
 Chilsed for comparison
 
@@ -68,6 +69,13 @@ docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://
 ```
 
 Web API accessible on http://localhost:8000 and https://localhost:8001. 
+
+## NpgCli - 66.7 MB
+with reflection unfortunately
+```shell
+docker build -t nativeaot-scratch-npgsql NpgCli
+docker run -i -e ConnectionString='Host=host.docker.internal:32768;Username=postgres;Password=postgrespw' nativeaot-scratch-npgsql
+```
 
 ## Web API on Chiseled - 33.9 MB
 with reflection unfortunately
