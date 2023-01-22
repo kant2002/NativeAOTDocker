@@ -10,8 +10,9 @@ This is sizes for experiment
 | Experiment | Size | Embed ICU | Embed OpenSSL | 
 | ------------ | ----- | --- | ---------- |
 | Console + Invariant globalization | 1.56 MB | No | No |
-| Console + ICU | 35.9 MB | Yes | No |
+| Console + ICU | 36.77 MB | Yes | No |
 | Console + Brotli + Deflate + Gzip | 2.56 MB  | No | No |
+| HttpClient | 7.49 MB | No | No |
 | HttpClient + OpenSSL | 10.5 MB | No | Yes |
 | Web API | 23.6 MB | No | Yes |
 | Grpc API | 21.6 MB | No | Yes |
@@ -24,6 +25,23 @@ Chilsed for comparison
 | Web API | 33.9 MB | No | No |
 
 Resulting docker image have size of 1.56 MB. Thats after disabling reflection. That's the minimum which I can get without integrating with Docker tightly. Or is it kernel integration I'm dreaming about? Unikernels, I see unikernels around me
+
+# Sizes of the components
+
+Based on results I get approximate minimum size of code which added to your application if you using these libraries.
+
+| Component | Size |  
+| ------------ | ----- |
+| Barebone runtime + console | 1.56 MB |
+| ICU data | 31.3 MB |
+| Globalization support | 3.96 MB | No | No |
+| Brotli + Deflate + Gzip | 1 MB  |
+| HttpClient | 5.93 MB | No | Yes |
+| OpenSSL | 3.0 MB | No | Yes |
+| OpenSSL certificates | 0.7 MB | No | Yes |
+| Web API | 22.0 MB | No | Yes |
+| Grpc API | 20.0 MB | No | Yes |
+| Npgsql ADO.NET | 26.2 MB | Yes | Yes |
 
 # Build and Run
 
