@@ -6,12 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <StaticallyLinked>true</StaticallyLinked>
     <PublishAot>true</PublishAot>
-    <IlcDisableReflection>false</IlcDisableReflection>
-    <!-- Switch this property to enable/disable globalization -->
-    <InvariantGlobalization Condition="'$(InvariantGlobalization)' == ''">false</InvariantGlobalization>
-    <StaticICULinking Condition="'$(InvariantGlobalization)' != 'true'">true</StaticICULinking>
-    <DefineConstants Condition="'$(InvariantGlobalization)' == 'true'">$(DefineConstants);NO_GLOBALIZATION</DefineConstants>
-    <StaticOpenSslLinking>true</StaticOpenSslLinking>
+    <IlcDisableReflection>true</IlcDisableReflection>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <StaticICULinking>true</StaticICULinking>
     <StaticExecutable>true</StaticExecutable>
     <StripSymbols>true</StripSymbols>
   </PropertyGroup>
@@ -21,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="8.0.0-alpha.1.23058.2" />
+    <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="8.0.0-alpha.1.23068.7" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS build
 WORKDIR /app
-RUN apk add clang libexecinfo binutils musl-dev build-base zlib-static
+RUN apk add clang binutils musl-dev build-base zlib-static
 COPY nuget.config .
 COPY CompressionEmbedding.csproj .
 RUN dotnet restore --runtime linux-musl-x64 CompressionEmbedding.csproj

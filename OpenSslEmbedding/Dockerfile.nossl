@@ -4,19 +4,17 @@ WORKDIR /app
 # best practices of Docker building imply that I put all dependencies in single line
 RUN apk add clang binutils musl-dev build-base zlib-static
 RUN apk add cmake
-RUN apk add openssl-dev openssl-libs-static openssl
+RUN apk add openssl-dev openssl-libs-static
 COPY nuget.config .
-COPY WebApi.csproj .
-RUN dotnet restore --runtime linux-musl-x64 WebApi.csproj
+COPY OpenSslEmbedding.csproj .
+RUN dotnet restore --runtime linux-musl-x64 OpenSslEmbedding.csproj
 
 COPY . .
-RUN dotnet publish -c Release -r linux-musl-x64 -o out WebApi.csproj
+RUN dotnet publish -c Release -r linux-musl-x64 -o out OpenSslEmbedding.csproj /p:StaticOpenSslLinking=false
+RUN strip /app/out/OpenSslEmbedding
 
 FROM scratch AS runtime
 WORKDIR /app
-COPY --from=build /app/out/WebApi /app/
+COPY --from=build /app/out/OpenSslEmbedding /app/
 COPY --from=build /etc/ssl/certs/* /etc/ssl/certs/
-ENV ASPNETCORE_URLS="https://+;http://+"
-EXPOSE 443
-EXPOSE 80
-ENTRYPOINT ["/app/WebApi"]  
+ENTRYPOINT ["/app/OpenSslEmbedding"]  
