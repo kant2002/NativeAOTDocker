@@ -16,7 +16,8 @@ This is sizes for experiment
 | HttpClient + OpenSSL | 11.76 MB | No | Yes |
 | Web API | 25.15 MB | No | Yes |
 | Grpc API | 26.61 MB | No | Yes |
-| Npgsql Cli | 66.71 MB | Yes | Yes |
+| Npgsql ADO.NET + ICU | 66.71 MB | Yes | Yes |
+| Npgsql ADO.NET + Invariant globalization | 32.50 MB | No | Yes |
 
 Chilsed for comparison
 
@@ -103,11 +104,18 @@ docker build -t nativeaot-scratch-grpcapi GrpcApi
 docker run --rm -it -p 8010:80 -p 8011:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_ENVIRONMENT=Development -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/contoso.com.crt -e ASPNETCORE_Kestrel__Certificates__Default__KeyPath=/https/contoso.com.key -v $PWD\certs/:/https/ nativeaot-scratch-grpcapi
 ``` 
 
-## NpgCli - 66.71 MB
+## NpgCli + Globalization - 66.71 MB
 with reflection unfortunately
 ```shell
 docker build -t nativeaot-scratch-npgsql NpgCli
 docker run -i -e ConnectionString='Host=host.docker.internal:32768;Username=postgres;Password=postgrespw' nativeaot-scratch-npgsql
+```
+
+## NpgCli - 32.50 MB
+with reflection unfortunately
+```shell
+docker build -t nativeaot-scratch-npgsql-noicu NpgCli -f NpgCli/Dockerfile.noicu
+docker run -i -e ConnectionString='Host=host.docker.internal:32768;Username=postgres;Password=postgrespw' nativeaot-scratch-npgsql-noicu
 ```
 
 ## Web API on Chiseled - 33.76 MB
