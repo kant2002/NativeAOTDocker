@@ -11,7 +11,7 @@ RUN dotnet publish -c Release -r linux-x64 -o out WebApi.csproj
 FROM mcr.microsoft.com/dotnet/nightly/runtime-deps:8.0-jammy-chiseled AS runtime
 WORKDIR /app
 COPY --from=build /app/out/WebApi /app/
-ENV ASPNETCORE_URLS="https://+;http://+"
+ENV ASPNETCORE_URLS="http://+"
 EXPOSE 443
 EXPOSE 80
 ENTRYPOINT ["/app/WebApi"]  

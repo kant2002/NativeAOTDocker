@@ -16,7 +16,7 @@ FROM scratch AS runtime
 WORKDIR /app
 COPY --from=build /app/out/WebApi /app/
 COPY --from=build /etc/ssl/certs/* /etc/ssl/certs/
-ENV ASPNETCORE_URLS="https://+;http://+"
+ENV ASPNETCORE_URLS="http://+"
 EXPOSE 443
 EXPOSE 80
 ENTRYPOINT ["/app/WebApi"]  

@@ -34,7 +34,7 @@ Based on results I get approximate minimum size of code which added to your appl
 | Component | Size |  
 | ------------ | ----- |
 | Barebone runtime + console | 1.28 MB |
-| ICU data | 31.3 MB | <!--- nativeaot-scratch - nativeaot-scratch-invariant -->
+| ICU data | 33.86 MB | <!--- nativeaot-scratch - nativeaot-scratch-invariant -->
 | Globalization support | 2.58 MB | <!--- nativeaot-scratch-npgsql - nativeaot-scratch-npgsql-noicu - (nativeaot-scratch - nativeaot-scratch-invariant) -->
 | Brotli + Deflate + Gzip | 0.94 MB  | <!--- nativeaot-scratch-compression - nativeaot-scratch-invariant -->
 | HttpClient | 6.36 MB | <!--- nativeaot-scratch-http-client - nativeaot-scratch-invariant -->
@@ -84,7 +84,7 @@ docker run -i nativeaot-scratch-openssl
 with reflection unfortunately
 ```shell
 docker build -t nativeaot-scratch-webapi WebApi
-docker run -p 5022:80 -e ASPNETCORE_URLS="http://+" -i nativeaot-scratch-webapi
+docker run -p 5022:80 -i nativeaot-scratch-webapi
 ```
 
 Web API accessible on http://localhost:5022.
@@ -122,7 +122,7 @@ docker run -i -e ConnectionString='Host=172.17.0.2;Username=postgres;Password=po
 with reflection unfortunately
 ```shell
 docker build -t nativeaot-scratch-webapi-chiseled WebApiChiseled
-docker run -p 5122:80 -e ASPNETCORE_URLS="http://+" -i nativeaot-scratch-webapi-chiseled
+docker run -p 5122:80 -i nativeaot-scratch-webapi-chiseled
 ```
 
 Web API accessible on http://localhost:5122.
