@@ -9,21 +9,21 @@ This is sizes for experiment
 
 | Experiment | Size | Embed ICU | Embed OpenSSL | 
 | ------------ | ----- | --- | ---------- |
-| Console + Invariant globalization | 1.28 MB | No | No |
+| Console + Invariant globalization | 1.29 MB | No | No |
 | Console + ICU | 35.14 MB | Yes | No |
 | Console + Brotli + Deflate + Gzip | 2.22 MB  | No | No |
-| HttpClient | 7.64 MB | No | No |
-| HttpClient + OpenSSL | 12.15 MB | No | Yes |
-| Web API | 22.22 MB | No | Yes |
-| Grpc API | 23.71 MB | No | Yes |
-| Npgsql ADO.NET + ICU | 51.58 MB | Yes | Yes |
-| Npgsql ADO.NET + Invariant globalization | 17.70 MB | No | Yes |
+| HttpClient | 7.26 MB | No | No |
+| HttpClient + OpenSSL | 12.16 MB | No | Yes |
+| Web API | 21.94 MB | No | Yes |
+| Grpc API | 23.46 MB | No | Yes |
+| Npgsql ADO.NET + ICU | 50.98 MB | Yes | Yes |
+| Npgsql ADO.NET + Invariant globalization | 17.08 MB | No | Yes |
 
 Chilsed for comparison
 
 | Experiment | Size | Embed ICU | Embed OpenSSL | 
 | ------------ | ----- | --- | ---------- |
-| Web API | 29.97 MB | No | No |
+| Web API | 30.46 MB | No | No |
 
 Resulting docker image have size of 1.56 MB. Thats after disabling reflection. That's the minimum which I can get without integrating with Docker tightly. Or is it kernel integration I'm dreaming about? Unikernels, I see unikernels around me
 
@@ -31,18 +31,18 @@ Resulting docker image have size of 1.56 MB. Thats after disabling reflection. T
 
 Based on results I get approximate minimum size of code which added to your application if you using these libraries.
 
-| Component | Size |  
+| Component | Size |
 | ------------ | ----- |
-| Barebone runtime + console | 1.28 MB |
-| ICU data | 33.86 MB | <!--- nativeaot-scratch - nativeaot-scratch-invariant -->
-| Globalization support | 2.58 MB | <!--- nativeaot-scratch-npgsql - nativeaot-scratch-npgsql-noicu - (nativeaot-scratch - nativeaot-scratch-invariant) -->
-| Brotli + Deflate + Gzip | 0.94 MB  | <!--- nativeaot-scratch-compression - nativeaot-scratch-invariant -->
-| HttpClient | 6.36 MB | <!--- nativeaot-scratch-http-client - nativeaot-scratch-invariant -->
-| OpenSSL | 3.87 MB | <--- nativeaot-scratch-openssl - nativeaot-scratch-http-client - SSL certificates -->
-| OpenSSL certificates | 0.64 MB |
-| Web API | 19.94 MB | <!--- nativeaot-scratch-webapi - nativeaot-scratch-invariant -->
-| Grpc API | 22.43 MB | <!--- nativeaot-scratch-grpcapi - nativeaot-scratch-invariant -->
-| Npgsql ADO.NET | 16.42 MB | <!--- nativeaot-scratch-npgsql-noicu - nativeaot-scratch-invariant -->
+| Barebone runtime + console | 1.28MB |
+| ICU data | 29.40MB |
+| Globalization support | 4.47MB |
+| Brotli + Deflate + Gzip | 0.94MB |
+| HttpClient | 5.98MB |
+| OpenSSL | 4.26MB |
+| OpenSSL certificates | 0.64MB |
+| Web API | 20.66MB |
+| Grpc API | 22.18MB |
+| Npgsql ADO.NET | 15.82MB |
 
 # Build and Run
 
@@ -54,7 +54,7 @@ docker run -i nativeaot-scratch
 
 30 MB is ICU data.
 
-## Invariant globalization - 1.28 MB
+## Invariant globalization - 1.29 MB
 ```shell
 docker build -t nativeaot-scratch-invariant InvariantGlobalization
 docker run -i nativeaot-scratch-invariant
@@ -66,21 +66,21 @@ docker build -t nativeaot-scratch-compression CompressionEmbedding
 docker run -i nativeaot-scratch-compression
 ```
 
-## HttpClient - 7.64 MB
+## HttpClient - 7.26 MB
 with reflection unfortunately
 ```shell
 docker build -t nativeaot-scratch-http-client -f OpenSslEmbedding/Dockerfile.nossl OpenSslEmbedding
 docker run -i nativeaot-scratch-http-client
 ```
 
-## HttpClient + OpenSSL - 12.15 MB
+## HttpClient + OpenSSL - 12.16 MB
 with reflection unfortunately
 ```shell
 docker build -t nativeaot-scratch-openssl OpenSslEmbedding
 docker run -i nativeaot-scratch-openssl
 ```
 
-## Web API - 22.22 MB
+## Web API - 21.94 MB
 with reflection unfortunately
 ```shell
 docker build -t nativeaot-scratch-webapi WebApi
@@ -97,28 +97,28 @@ docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://
 
 Web API accessible on http://localhost:8000 and https://localhost:8001.
 
-## GrpcApi - 23.71 MB
+## GrpcApi - 23.46 MB
 with reflection unfortunately
 ```shell
 docker build -t nativeaot-scratch-grpcapi GrpcApi
 docker run --rm -it -p 8010:80 -p 8011:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_ENVIRONMENT=Development -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/contoso.com.crt -e ASPNETCORE_Kestrel__Certificates__Default__KeyPath=/https/contoso.com.key -v $PWD\certs/:/https/ nativeaot-scratch-grpcapi
 ``` 
 
-## NpgCli + Globalization - 51.58 MB
+## NpgCli + Globalization - 50.98 MB
 with reflection unfortunately
 ```shell
 docker build -t nativeaot-scratch-npgsql NpgCli
 docker run -i -e ConnectionString='Host=172.17.0.2;Username=postgres;Password=postgrespw' nativeaot-scratch-npgsql
 ```
 
-## NpgCli - 17.70 MB
+## NpgCli - 17.08 MB
 with reflection unfortunately
 ```shell
 docker build -t nativeaot-scratch-npgsql-noicu NpgCli -f NpgCli/Dockerfile.noicu
 docker run -i -e ConnectionString='Host=172.17.0.2;Username=postgres;Password=postgrespw' nativeaot-scratch-npgsql-noicu
 ```
 
-## Web API on Chiseled - 29.97 MB
+## Web API on Chiseled - 30.46 MB
 with reflection unfortunately
 ```shell
 docker build -t nativeaot-scratch-webapi-chiseled WebApiChiseled
