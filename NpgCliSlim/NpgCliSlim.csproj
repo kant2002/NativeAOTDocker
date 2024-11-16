@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <StaticallyLinked>true</StaticallyLinked>
+    <PublishAot>true</PublishAot>
+    <IlcDisableReflection>false</IlcDisableReflection>
+    <!-- Switch this property to enable/disable globalization -->
+    <InvariantGlobalization Condition="'$(InvariantGlobalization)' == ''">false</InvariantGlobalization>
+    <StaticICULinking Condition="'$(InvariantGlobalization)' != 'true'">true</StaticICULinking>
+    <DefineConstants Condition="'$(InvariantGlobalization)' == 'true'">$(DefineConstants);NO_GLOBALIZATION</DefineConstants>
+    <StaticOpenSslLinking>true</StaticOpenSslLinking>
+    <StaticExecutable>true</StaticExecutable>
+    <StripSymbols>true</StripSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="8.0.3" />
+  </ItemGroup>
+
+</Project>
