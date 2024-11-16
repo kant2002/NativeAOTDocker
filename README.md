@@ -18,6 +18,8 @@ This is sizes for experiment
 | Grpc API | 23.46 MB | No | Yes |
 | Npgsql ADO.NET + ICU | 50.98 MB | Yes | Yes |
 | Npgsql ADO.NET + Invariant globalization | 17.08 MB | No | Yes |
+| Npgsql Builder Slim + ICU | 44.1 MB | Yes | Yes |
+| Npgsql Builder Slim + Invariant globalization | 10.2 MB | No | Yes |
 
 Chilsed for comparison
 
@@ -43,6 +45,7 @@ Based on results I get approximate minimum size of code which added to your appl
 | Web API | 20.66MB |
 | Grpc API | 22.18MB |
 | Npgsql ADO.NET | 15.82MB |
+| Npgsql Builder Slim | 8.93MB |
 
 # Build and Run
 
